@@ -1,2 +1,1 @@
-# journal-app
-React App with typescript and Sass
+#Journal App
