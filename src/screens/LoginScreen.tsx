@@ -36,7 +36,9 @@ const LoginScreen = () => {
         </div>
       </form>
       <div className='mt-4 d-flex center'>
-        <Link to='/auth/register'>Create a new account</Link>
+        <Link className='link' to='/auth/register'>
+          Create a new account
+        </Link>
       </div>
     </React.Fragment>
   );

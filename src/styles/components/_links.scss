@@ -1,0 +1,8 @@
+.link{
+    color: $dark-grey;
+    text-decoration: none;
+    transition: all 0.4s;
+    &:hover{
+        color: $bg-primary;
+    }
+}

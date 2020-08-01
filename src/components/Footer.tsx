@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className='footer--container text-primary'>
-      <span>Jose Banega </span> {year} - React course
+      <span>Jose Banega </span> &nbsp; {year} - React course
     </footer>
   );
 };
