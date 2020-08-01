@@ -1,10 +1,10 @@
 @import './styles/base/setting';
 @import './styles/base/bases';
 
-.bg-primary {
-  background: $bg-primary;
-}
+//Components
 
-.text-primary {
-  color: $text-primary;
-}
+@import './styles/components/auth';
+@import './styles//components/footer';
+@import './styles/components/input';
+@import './styles/components/button';
+

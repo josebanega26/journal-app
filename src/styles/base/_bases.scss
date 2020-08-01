@@ -50,11 +50,24 @@
   display: flex;
 }
 
-.item-center {
+.center {
   justify-content: center;
   align-items: center;
 }
 
 .pointer {
   cursor: pointer;
+}
+.bg-primary {
+  background: $bg-primary;
+}
+
+.text-primary {
+  color: $text-primary;
+}
+.text-dark{
+  color: $dark
+}
+.w-100{
+  width: 100%;
 }

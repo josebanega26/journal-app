@@ -4,8 +4,7 @@ import { AppRouter } from './routes/AppRouter';
 
 const App = () => {
   return (
-    <div className="App">
-      Journal APP
+    <div className='App'>
       <AppRouter></AppRouter>
     </div>
   );

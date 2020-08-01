@@ -1,17 +1,32 @@
 import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
-import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
-import PublicRoute from './PublicRoute';
+import { Switch, Redirect, Route } from 'react-router-dom';
+import LoginScreen from '../screens/LoginScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+
+// TODO: Implement public route when login works
+// import PublicRoute from './PublicRoute';
 
 const AuthRouter: React.FC = () => {
   return (
-    <Switch>
-      Auth Router
-      <PublicRoute isAuth={false} component={LoginScreen}></PublicRoute>
-      <PublicRoute isAuth={false} component={SignUpScreen}></PublicRoute>
-      <Redirect to="/"></Redirect>
-    </Switch>
+    <div className='auth--main'>
+      <div className='auth--main-box'>
+        <Switch>
+          <Route
+            exact
+            path='/auth/login'
+            isAuth={false}
+            component={LoginScreen}
+          ></Route>
+          <Route
+            exact
+            path='/auth/register'
+            isAuth={false}
+            component={SignUpScreen}
+          ></Route>
+          <Redirect to='/'></Redirect>
+        </Switch>
+      </div>
+    </div>
   );
 };
 

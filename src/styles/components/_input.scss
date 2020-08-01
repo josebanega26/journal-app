@@ -1,0 +1,13 @@
+input{
+    min-width: -webkit-fill-available;
+    padding: 12px 8px;
+    margin-bottom: 0.45rem;
+    color: $dark-grey;
+    outline:none;
+    border: 0;
+    border-bottom: 1px solid $light-grey;
+    transition: all .4s ease;
+    &:focus{
+        border-bottom: 2px solid $bg-secondary;
+    }
+}
