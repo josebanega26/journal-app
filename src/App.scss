@@ -1,0 +1,10 @@
+@import './styles/base/setting';
+@import './styles/base/bases';
+
+.bg-primary {
+  background: $bg-primary;
+}
+
+.text-primary {
+  color: $text-primary;
+}

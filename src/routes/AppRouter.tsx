@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import JournalScreen from '../screens/JournalScreen/JournalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen/NotFoundScreen';
 import AuthRouter from './AuthRouter';
+import Footer from '../components/Footer/Footer';
+
 // TODO: Implement private route when login works
 // import PrivateRoute from './PrivateRoute';
 
@@ -14,6 +16,7 @@ export const AppRouter = () => {
         <Route exact path="/" component={JournalScreen}></Route>
         <Route path="*" component={NotFoundScreen}></Route>
       </Switch>
+      <Footer></Footer>
     </Router>
   );
 };
