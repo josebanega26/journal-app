@@ -1,5 +1,5 @@
 import React from 'react';
-import { truncateText } from '../utils/text.utils';
+import { truncateText } from '../utils/utils';
 
 // TODO: set props as required
 interface JournalEntryProps {

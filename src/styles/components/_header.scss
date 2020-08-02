@@ -1,0 +1,13 @@
+.header--main {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lighten($dark-grey, 5);
+  color: white;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+  }
+}
