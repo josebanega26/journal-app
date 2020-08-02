@@ -65,9 +65,12 @@
 .text-primary {
   color: $text-primary;
 }
-.text-dark{
-  color: $dark
+.text-dark {
+  color: $dark;
 }
-.w-100{
+.flex-column {
+  flex-direction: column;
+}
+.w-100 {
   width: 100%;
 }

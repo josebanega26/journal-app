@@ -1,0 +1,45 @@
+.journal--main {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  height: $view-height;
+}
+.journal--entry {
+  overflow: hidden;
+  background: white;
+  color: $dark-grey;
+  cursor: pointer;
+  border-radius: 4px;
+  min-height: 100px;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 100px 1fr 75px;
+  &:hover {
+    background-color: darken(white, 10);
+  }
+
+  &-image {
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    background-position: center;
+  }
+  .journal--entry-body {
+    padding: 4px;
+  }
+  .journal-entry-title {
+    font-size: 14px;
+    font-weight: bolder;
+    margin-bottom: 4px;
+  }
+  .journal-entry-content {
+    font-size: 10px;
+  }
+  .journal--entry-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+    font-weight: bold;
+  }
+}

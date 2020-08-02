@@ -1,0 +1,41 @@
+.sidebar--main {
+  color: $text-primary;
+  background-color: $dark-grey;
+  height: $view-height;
+
+  .sidebar--title-section {
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  .sidebar--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+  }
+  .sidebar--icon {
+    fill: white;
+  }
+  .button {
+    cursor: pointer;
+    &:hover {
+      transition: all 0.4s;
+      color: #d8d8d8;
+    }
+  }
+
+  .sidebar--new--entry {
+    cursor: pointer;
+    transition: all 0.2s;
+    &--icon {
+      height: 96px;
+      width: 96px;
+      fill: white;
+    }
+    &:hover svg,
+    &:hover {
+      color: darken(white, 50);
+      fill: darken(white, 50);
+    }
+  }
+}
