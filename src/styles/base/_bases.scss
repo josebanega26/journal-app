@@ -74,3 +74,18 @@
 .w-100 {
   width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 11px;
+  scrollbar-width: thin;
+  scrollbar-color: $thumbBG $scrollbarBG;
+}
+
+::-webkit-scrollbar-track {
+  background: $scrollbarBG;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $thumbBG;
+  border-radius: 6px;
+  border: 3px solid $scrollbarBG;
+}

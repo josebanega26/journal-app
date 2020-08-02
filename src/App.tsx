@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.scss';
 import { AppRouter } from './routes/AppRouter';
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className="App">
       <AppRouter></AppRouter>
     </div>
   );

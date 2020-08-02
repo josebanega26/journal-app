@@ -1,0 +1,16 @@
+.nothing--main {
+  background-color: lighten($bg-primary, 50);
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  color: white;
+
+  svg {
+    height: 96px;
+    width: 96px;
+    fill: white;
+  }
+}

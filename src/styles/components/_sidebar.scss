@@ -2,6 +2,7 @@
   color: $text-primary;
   background-color: $dark-grey;
   height: $view-height;
+  overflow: auto;
 
   .sidebar--title-section {
     justify-content: space-between;
