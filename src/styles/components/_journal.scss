@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 350px 1fr;
   height: $view-height;
+  overflow: auto;
 }
 .journal--entry {
   overflow: hidden;

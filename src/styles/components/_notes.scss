@@ -1,0 +1,24 @@
+.notes--screen {
+}
+.notes--main {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .notes--title {
+    border: none;
+    font-size: 24px;
+    color: $dark-grey;
+  }
+  .notes--content {
+    font-size: 20px;
+    border: none;
+    height: 400px;
+    cursor: pointer;
+  }
+  .notes--image img {
+    height: 150px;
+    box-shadow: 5px 5px lighten(#000000, 10);
+  }
+}
