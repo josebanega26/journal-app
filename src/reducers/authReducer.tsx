@@ -1,7 +1,7 @@
 import { authTypes, AuthInterface } from '../types/authTypes';
 import { IAuth } from '../models/auth.interface';
 const initialState: IAuth = {
-  name: '',
+  displayName: '',
   uid: ''
 };
 

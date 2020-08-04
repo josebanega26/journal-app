@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
 import NothingSelected from '../components/NothingSelected';
+import Sidebar from '../components/Sidebar';
 import NotesScreen from './NotesScreen';
 
 const JournalScreen = () => {

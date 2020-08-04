@@ -1,16 +1,22 @@
 import React, { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-
+import { useDispatch } from 'react-redux';
+import { startGoogleLogin, startLoginEmailPassword } from '../actions/authActions';
 const LoginScreen = () => {
   const initalState = { email: '', password: '' };
   const [loginForm, handleForm, resetForm] = useForm(initalState);
   const { email = '', password = '' } = loginForm;
+  const dispatch = useDispatch();
+
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const value = { ...loginForm };
+    dispatch(startLoginEmailPassword('test-1', 'Jose Banega'));
     resetForm();
-    console.log('loginForm :>> ', value);
+  };
+  const handleGoogleSignIn = () => {
+    console.log('you clicked :>> ');
+    dispatch(startGoogleLogin());
   };
   return (
     <React.Fragment>
@@ -45,7 +51,7 @@ const LoginScreen = () => {
                 alt="google button"
               />
             </div>
-            <p className="btn-text">
+            <p className="btn-text" onClick={handleGoogleSignIn}>
               <b>Sign in with google</b>
             </p>
           </div>
