@@ -1,6 +1,7 @@
 import { AuthInterface, authTypes } from '../types/authTypes';
 import { googlgeAuthProvider, firebase } from '../firebase/firebase-config';
 import { startLoading, stopLoading } from './uiActions';
+import Swal from 'sweetalert2';
 
 export const startLoginWithEmailPassword = (email: string, password: string) => {
   return async (dispatch: any) => {
@@ -9,7 +10,7 @@ export const startLoginWithEmailPassword = (email: string, password: string) => 
       const { user } = await firebase.auth().signInWithEmailAndPassword(email, password);
       dispatch(login(user?.uid as string, user?.displayName as string));
     } catch (err) {
-      console.log('err :>> ', err?.message);
+      errorHandler(err);
     } finally {
       dispatch(stopLoading());
     }
@@ -26,7 +27,7 @@ export const startGoogleLogin = () => {
         dispatch(login(userCredential.user?.uid as string, userCredential.user?.displayName as string));
       })
       .catch((err) => {
-        console.log(err?.message);
+        errorHandler(err);
       })
       .finally(() => {
         dispatch(stopLoading());
@@ -41,7 +42,7 @@ export const startRegisterWithNamePasswordEmail = (name: string, password: strin
       await user?.updateProfile({ displayName: name });
       dispatch(login(user?.uid as string, name));
     } catch (err) {
-      console.log('err :>> ', err?.message);
+      errorHandler(err);
     } finally {
       dispatch(stopLoading());
     }
@@ -56,7 +57,7 @@ export const startLogout = () => {
       dispatch(logout());
       dispatch(stopLoading());
     } catch (err) {
-      console.log('err :>> ', err);
+      errorHandler(err);
     }
   };
 };
@@ -69,3 +70,12 @@ export const logout = (): AuthInterface => ({
   type: authTypes.LOGOUT,
   payload: null
 });
+
+const errorHandler = (err: string) => {
+  Swal.fire({
+    title: 'Error!',
+    text: err,
+    icon: 'error',
+    confirmButtonText: 'Ok'
+  });
+};
