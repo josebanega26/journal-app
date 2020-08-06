@@ -48,7 +48,24 @@ export const startRegisterWithNamePasswordEmail = (name: string, password: strin
   };
 };
 
+export const startLogout = () => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(startLoading());
+      await firebase.auth().signOut();
+      dispatch(logout());
+      dispatch(stopLoading());
+    } catch (err) {
+      console.log('err :>> ', err);
+    }
+  };
+};
 export const login = (uid: string, displayName: string): AuthInterface => ({
-  payload: { uid, displayName },
-  type: authTypes.LOGIN
+  type: authTypes.LOGIN,
+  payload: { uid, displayName }
+});
+
+export const logout = (): AuthInterface => ({
+  type: authTypes.LOGOUT,
+  payload: null
 });

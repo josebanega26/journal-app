@@ -5,13 +5,14 @@ export const authTypes = {
   LOGOUT: '[Auth] LOGOUT'
 };
 
-interface Login {
+export type Login = {
   type: typeof authTypes.LOGIN;
   payload: IAuth;
-}
+};
 
-interface Logout {
+export type Logout = {
   type: typeof authTypes.LOGOUT;
-}
+  payload: any;
+};
 
-export type AuthInterface = Login & Logout;
+export type AuthInterface = Login | Logout;

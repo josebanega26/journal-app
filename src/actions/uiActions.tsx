@@ -11,9 +11,11 @@ export const removeErrorMsg = (): RemoveError => ({
 });
 
 export const startLoading = (): StartLoading => ({
-  type: uiTypes.START_LOADING
+  type: uiTypes.START_LOADING,
+  payload: null
 });
 
 export const stopLoading = (): StopLoading => ({
-  type: uiTypes.STOP_LOADING
+  type: uiTypes.STOP_LOADING,
+  payload: null
 });

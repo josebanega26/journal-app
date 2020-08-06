@@ -11,8 +11,6 @@ import { firebase } from '../firebase/firebase-config';
 import { login } from '../actions/authActions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-// TODO: Implement private route when login works
-// import PrivateRoute from './PrivateRoute';
 
 export const AppRouter = () => {
   const { loading } = useSelector((state: RootState) => state.ui);
@@ -24,6 +22,8 @@ export const AppRouter = () => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName as string));
         setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
       }
       setChecking(false);
     });

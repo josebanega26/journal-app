@@ -16,9 +16,11 @@ export interface RemoveError {
 }
 export interface StartLoading {
   type: typeof uiTypes.START_LOADING;
+  payload: null;
 }
 export interface StopLoading {
   type: typeof uiTypes.STOP_LOADING;
+  payload: null;
 }
 
-export type UiInterface = SetError & RemoveError & StartLoading & StopLoading;
+export type UiInterface = SetError | RemoveError | StartLoading | StopLoading;
