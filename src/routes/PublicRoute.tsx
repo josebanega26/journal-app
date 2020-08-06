@@ -5,20 +5,13 @@ interface PublicRouteProps {
   isAuth: boolean;
   component: any;
   path: string;
-  exact: any;
+  exact?: any;
 }
-const PublicRoute: React.FC<PublicRouteProps> = ({
-  isAuth,
-  component: Component,
-  ...rest
-}) => {
+const PublicRoute: React.FC<PublicRouteProps> = ({ isAuth, component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      component={(props: any) =>
-        isAuth ? <Component {...props}></Component> : <Redirect to='/' />
-      }
-    ></Route>
+      component={(props: any) => (!isAuth ? <Component {...props}></Component> : <Redirect to="/" />)}></Route>
   );
 };
 
