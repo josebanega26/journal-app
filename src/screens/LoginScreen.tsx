@@ -2,20 +2,20 @@ import React, { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { useDispatch } from 'react-redux';
-import { startGoogleLogin, startLoginEmailPassword } from '../actions/authActions';
+import { startGoogleLogin, startLoginWithEmailPassword } from '../actions/authActions';
+
 const LoginScreen = () => {
-  const initalState = { email: '', password: '' };
+  const initalState = { email: 'a@gmail.com', password: '123456' };
   const [loginForm, handleForm, resetForm] = useForm(initalState);
   const { email = '', password = '' } = loginForm;
   const dispatch = useDispatch();
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(startLoginEmailPassword('test-1', 'Jose Banega'));
+    dispatch(startLoginWithEmailPassword(email, password));
     resetForm();
   };
   const handleGoogleSignIn = () => {
-    console.log('you clicked :>> ');
     dispatch(startGoogleLogin());
   };
   return (

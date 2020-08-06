@@ -4,6 +4,8 @@ import { useForm } from '../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { setErrorMsg, removeErrorMsg } from '../actions/uiActions';
 import { RootState } from '../reducers/index';
+import { startRegisterWithNamePasswordEmail } from '../actions/authActions';
+
 const SignUpScreen = () => {
   const initalForm = {
     name: 'Jose',
@@ -20,6 +22,7 @@ const SignUpScreen = () => {
   const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (canSubmitForm()) {
+      dispatch(startRegisterWithNamePasswordEmail(name, password, email));
       resetForm();
       dispatch(removeErrorMsg());
     }

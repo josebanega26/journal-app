@@ -1,6 +1,8 @@
 export const uiTypes = {
   SET_ERROR: '[UI] SetError',
-  REMOVE_ERROR: '[UI] RemoveError'
+  REMOVE_ERROR: '[UI] RemoveError',
+  START_LOADING: '[UI] StarLoading',
+  STOP_LOADING: '[UI] StopLoading'
 };
 
 export interface SetError {
@@ -12,5 +14,11 @@ export interface RemoveError {
   type: typeof uiTypes.REMOVE_ERROR;
   payload: null;
 }
+export interface StartLoading {
+  type: typeof uiTypes.START_LOADING;
+}
+export interface StopLoading {
+  type: typeof uiTypes.STOP_LOADING;
+}
 
-export type UiInterface = SetError & RemoveError;
+export type UiInterface = SetError & RemoveError & StartLoading & StopLoading;

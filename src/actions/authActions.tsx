@@ -1,10 +1,18 @@
 import { AuthInterface, authTypes } from '../types/authTypes';
 import { googlgeAuthProvider, firebase } from '../firebase/firebase-config';
-export const startLoginEmailPassword = (email: string, password: string) => {
-  return (dispatch: any) => {
-    setTimeout(() => {
-      dispatch(login('123', 'Jose D'));
-    }, 4000);
+import { startLoading, stopLoading } from './uiActions';
+
+export const startLoginWithEmailPassword = (email: string, password: string) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(startLoading());
+      const { user } = await firebase.auth().signInWithEmailAndPassword(email, password);
+      dispatch(login(user?.uid as string, user?.displayName as string));
+    } catch (err) {
+      console.log('err :>> ', err?.message);
+    } finally {
+      dispatch(stopLoading());
+    }
   };
 };
 
@@ -17,10 +25,22 @@ export const startGoogleLogin = () => {
         dispatch(login(userCredential.user?.uid as string, userCredential.user?.displayName as string));
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err?.message);
       });
   };
 };
+export const startRegisterWithNamePasswordEmail = (name: string, password: string, email: string) => {
+  return async (dispatch: any) => {
+    try {
+      const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      await user?.updateProfile({ displayName: name });
+      dispatch(login(user?.uid as string, name));
+    } catch (err) {
+      console.log('err :>> ', err?.message);
+    }
+  };
+};
+
 export const login = (uid: string, displayName: string): AuthInterface => ({
   payload: { uid, displayName },
   type: authTypes.LOGIN
