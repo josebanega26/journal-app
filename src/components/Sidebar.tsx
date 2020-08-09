@@ -6,14 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../actions/authActions';
 import { RootState } from '../reducers';
 import { useHistory } from 'react-router-dom';
+import { addNewNote, cleanLogoutNotes } from '../actions/notesActions';
 
 const Sidebar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { displayName } = useSelector((state: RootState) => state.auth);
-  const handlerLogout = async () => {
+
+  const handlerLogout = () => {
     dispatch(startLogout());
+    dispatch(cleanLogoutNotes());
     history.push('/auth/login');
+  };
+
+  const handlerNewNotes = () => {
+    dispatch(addNewNote());
   };
   return (
     <aside className="sidebar--main pt-2">
@@ -26,7 +33,7 @@ const Sidebar = () => {
           Logout
         </span>
       </div>
-      <div className="sidebar--new--entry d-flex center mt-2 flex-column">
+      <div className="sidebar--new--entry d-flex center mt-2 flex-column" onClick={handlerNewNotes}>
         <Calendar className="sidebar--new--entry--icon"></Calendar>
         <p className="sidebar--new--entry--text">New entry</p>
       </div>

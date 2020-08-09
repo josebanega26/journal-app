@@ -1,8 +1,7 @@
 import { AuthInterface, authTypes } from '../types/authTypes';
 import { googlgeAuthProvider, firebase } from '../firebase/firebase-config';
 import { startLoading, stopLoading } from './uiActions';
-import Swal from 'sweetalert2';
-
+import { errorHandler } from '../utils/errorHandler';
 export const startLoginWithEmailPassword = (email: string, password: string) => {
   return async (dispatch: any) => {
     try {
@@ -70,12 +69,3 @@ export const logout = (): AuthInterface => ({
   type: authTypes.LOGOUT,
   payload: null
 });
-
-const errorHandler = (err: string) => {
-  Swal.fire({
-    title: 'Error!',
-    text: err,
-    icon: 'error',
-    confirmButtonText: 'Ok'
-  });
-};

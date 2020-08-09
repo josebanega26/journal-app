@@ -1,7 +1,10 @@
 import React from 'react';
 import { getMonthName } from '../utils/utils';
 
-const Header = () => {
+interface HeaderProps {
+  handlerSave?: () => void;
+}
+const Header: React.FC<HeaderProps> = ({ handlerSave }) => {
   const [year, month, day] = new Date().toISOString().slice(0, 10).split('-');
   return (
     <nav className="header--main">
@@ -11,7 +14,7 @@ const Header = () => {
           <button>Picture</button>
         </li>
         <li>
-          <button>Save</button>
+          <button onClick={handlerSave}>Save</button>
         </li>
       </ul>
     </nav>
