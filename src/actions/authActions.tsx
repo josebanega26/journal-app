@@ -1,7 +1,7 @@
 import { AuthInterface, authTypes } from '../types/authTypes';
 import { googlgeAuthProvider, firebase } from '../firebase/firebase-config';
 import { startLoading, stopLoading } from './uiActions';
-import { errorHandler } from '../utils/errorHandler';
+import { errorHandler } from '../helpers/errorHandler';
 export const startLoginWithEmailPassword = (email: string, password: string) => {
   return async (dispatch: any) => {
     try {

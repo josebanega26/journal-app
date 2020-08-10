@@ -16,7 +16,7 @@ const NotesScreen = () => {
 
   const saveNote = () => {
     const note: INote = {
-      date: '12-05-2020',
+      date: new Date().getTime(),
       text: 'first text',
       title: 'fisrr title',
       imgUrl: 'tag irgerndwo'

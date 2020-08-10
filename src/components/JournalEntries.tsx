@@ -1,13 +1,14 @@
 import React from 'react';
 import JournalEntry from './JournalEntry';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
+import { INote } from '../models/note.interface';
 
 const JournalEntries = () => {
-  const entries = [1, 2, 3];
+  const { notes } = useSelector((state: RootState) => state.notes);
   return (
     <div>
-      {entries.map((values: any) => (
-        <JournalEntry key={values} />
-      ))}
+      {notes.length > 0 ? notes.map((note: INote) => <JournalEntry key={note.title} note={note} />) : <p>no notes</p>}
     </div>
   );
 };

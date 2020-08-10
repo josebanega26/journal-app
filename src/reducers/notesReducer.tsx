@@ -1,7 +1,9 @@
 import { notesTypes, NotesInterface } from '../types/notesTypes';
-const initialState = {
+import { INote } from '../models/note.interface';
+
+const initialState: { notes: INote[]; active: INote | null } = {
   notes: [],
-  active: false
+  active: null
 };
 
 export default (state = initialState, { type, payload }: NotesInterface) => {
@@ -9,8 +11,20 @@ export default (state = initialState, { type, payload }: NotesInterface) => {
     case notesTypes.ADD_NOTE:
       return { ...state, active: true };
     case notesTypes.CLEAN_LOGOUT_NOTES: {
-      return { ...state, notes: [], active: false };
+      return { ...state, notes: [], active: null };
     }
+    case notesTypes.SELECT_NOTE:
+      return {
+        ...state,
+        active: {
+          ...payload
+        }
+      };
+    case notesTypes.SET_NOTES:
+      return {
+        ...state,
+        notes: payload
+      };
     default:
       return state;
   }

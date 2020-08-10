@@ -11,17 +11,20 @@ import { firebase } from '../firebase/firebase-config';
 import { login } from '../actions/authActions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { getNotes } from '../actions/notesActions';
 
 export const AppRouter = () => {
   const { loading } = useSelector((state: RootState) => state.ui);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName as string));
         setIsAuthenticated(true);
+        dispatch(getNotes());
       } else {
         setIsAuthenticated(false);
       }
