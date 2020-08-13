@@ -8,7 +8,7 @@ const JournalEntries = () => {
   const { notes } = useSelector((state: RootState) => state.notes);
   return (
     <div>
-      {notes.length > 0 ? notes.map((note: INote) => <JournalEntry key={note.title} note={note} />) : <p>no notes</p>}
+      {notes.length > 0 ? notes.map((note: INote) => <JournalEntry key={note.id} note={note} />) : <p>no notes</p>}
     </div>
   );
 };

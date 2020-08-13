@@ -11,11 +11,15 @@ interface JournalEntryProps {
 }
 const JournalEntry: React.FC<JournalEntryProps> = ({ note }) => {
   const { title, imgUrl, text, date } = note;
+
   const dispatch = useDispatch();
+
   const [day, dayNumber] = moment(date).format('dddd Do').split(' ');
+
   const setNote = () => {
     dispatch(selectNote(note));
   };
+
   return (
     <div className="journal--entry" onClick={setNote}>
       <div

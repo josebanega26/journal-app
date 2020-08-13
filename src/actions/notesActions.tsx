@@ -28,7 +28,6 @@ export const selectNote = (note: INote): NotesInterface => ({
 export const startNoteCreation = (note: INote) => async (dispatch: any, getState: () => RootState) => {
   try {
     const { uid } = getState().auth;
-    console.log('uid :>> ', uid);
     dispatch(startLoading());
     const docRef = await db.collection(`${uid}/journal/notes`).add(note);
     console.log('docRef :>> ', docRef);
@@ -37,6 +36,7 @@ export const startNoteCreation = (note: INote) => async (dispatch: any, getState
     errorHandler(err);
   }
 };
+export const startUpdateCreation = (note: INote) => async (dispatch: any) => {};
 
 export const setNotes = (notes: INote[]): NotesInterface => ({
   type: notesTypes.SET_NOTES,

@@ -10,6 +10,6 @@ export const loadNotes = async (uid: string) => {
       ...result.data()
     })
   })
-  return notes
+  return notes.sort((a: any, b: any) => (b.date - a.date))
 
 }

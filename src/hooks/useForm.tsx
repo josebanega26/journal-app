@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 
 type useFormPropsInterface = object;
-type useFormReturnInterface = [any, (e: ChangeEvent<any>) => void, () => void];
+type useFormReturnInterface = [any, (e: ChangeEvent<any>) => void, (newForm?: any) => void];
 
 export const useForm = (initalState: useFormPropsInterface): useFormReturnInterface => {
   const [form, setForm] = useState<object | null>(initalState);
@@ -10,15 +10,14 @@ export const useForm = (initalState: useFormPropsInterface): useFormReturnInterf
     const {
       target: { name, value }
     } = e;
-
     setForm((oldValues: object) => ({
       ...(oldValues as object),
       [name]: value
     }));
   };
 
-  const resetForm = (): void => {
-    setForm(initalState);
+  const resetForm = (newFormState = initalState): void => {
+    setForm(newFormState);
   };
   return [form, handleForm, resetForm];
 };

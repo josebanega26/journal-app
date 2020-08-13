@@ -9,7 +9,7 @@ const initialState: { notes: INote[]; active: INote | null } = {
 export default (state = initialState, { type, payload }: NotesInterface) => {
   switch (type) {
     case notesTypes.ADD_NOTE:
-      return { ...state, active: true };
+      return { ...state, active: { title: '', text: '', imgUrl: null } };
     case notesTypes.CLEAN_LOGOUT_NOTES: {
       return { ...state, notes: [], active: null };
     }

@@ -1,38 +1,58 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import { useForm } from '../hooks/useForm';
-import { useDispatch } from 'react-redux';
-import { startNoteCreation } from '../actions/notesActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { startNoteCreation, startUpdateCreation } from '../actions/notesActions';
 import { INote } from '../models/note.interface';
-
+import { RootState } from '../reducers/index';
 const NotesScreen = () => {
-  // const initalForm = {
-  //   title: '',
-  //   text: '',
-  //   imgUrl: ''
-  // };
-  // const [noteForm, handlerForm, reset] = useForm({});
+  const { active: note } = useSelector((state: RootState) => state.notes);
+
+  const [noteForm, handlerForm, reset] = useForm(note);
+  const { title, text, imgUrl } = noteForm;
+  const activeId = useRef(note.id);
   const dispatch = useDispatch();
 
-  const saveNote = () => {
-    const note: INote = {
+  useEffect(() => {
+    if (activeId.current !== note.id) {
+      reset(note);
+      activeId.current = note.id;
+    }
+  }, [reset, note]);
+
+  console.log('note :>> ', note);
+
+  const saveNote = (note: INote) => {
+    const newNote: INote = {
       date: new Date().getTime(),
-      text: 'first text',
-      title: 'fisrr title',
-      imgUrl: 'tag irgerndwo'
+      text,
+      title,
+      imgUrl
     };
-    console.log('note :>> ', note);
-    dispatch(startNoteCreation(note));
+    if (note.id) {
+      dispatch(startUpdateCreation(newNote));
+    } else {
+      dispatch(startNoteCreation(newNote));
+    }
   };
   return (
     <div className="notes--screen">
-      <Header handlerSave={saveNote}></Header>
+      <Header
+        handlerSave={() => {
+          saveNote(note);
+        }}></Header>
       <div className="notes--main">
-        <input type="text" name="title" id="notes--title" className="notes--title" placeholder="Title" />
-        <textarea name="content" id="notes--content" className="notes--content" />
-        <div className="notes--image">
-          <img src="https://media-cdn.tripadvisor.com/media/photo-s/01/1d/ad/c3/orlando.jpg" alt="sunset" />
-        </div>
+        <input
+          type="text"
+          name="title"
+          id="notes--title"
+          className="notes--title"
+          placeholder="Title"
+          value={title}
+          onChange={handlerForm}
+        />
+        <textarea name="text" id="notes--content" className="notes--content" value={text} onChange={handlerForm} />
+        <div className="notes--image">{!!imgUrl && <img src={imgUrl} alt="sunset" />}</div>
       </div>
     </div>
   );
