@@ -27,6 +27,9 @@
   .journal--entry-body {
     padding: 15px 5px;
   }
+  .journal--entry--two {
+    grid-column-start: span 2;
+  }
   .journal-entry-title {
     font-size: 14px;
     font-weight: bolder;

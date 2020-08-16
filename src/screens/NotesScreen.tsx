@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import { useForm } from '../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { startNoteCreation, startUpdateCreation } from '../actions/notesActions';
+import { startNoteCreation, startUpdateCreation, selectNote } from '../actions/notesActions';
 import { INote } from '../models/note.interface';
 import { RootState } from '../reducers/index';
 const NotesScreen = () => {
@@ -20,7 +20,9 @@ const NotesScreen = () => {
     }
   }, [reset, note]);
 
-  console.log('note :>> ', note);
+  useEffect(() => {
+    dispatch(selectNote({ id: activeId, ...noteForm }));
+  }, [noteForm, dispatch]);
 
   const saveNote = (note: INote) => {
     const newNote: INote = {
@@ -30,7 +32,7 @@ const NotesScreen = () => {
       imgUrl
     };
     if (note.id) {
-      dispatch(startUpdateCreation(newNote));
+      dispatch(startUpdateCreation({ id: note.id, ...newNote }));
     } else {
       dispatch(startNoteCreation(newNote));
     }

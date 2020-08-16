@@ -5,6 +5,7 @@ import { INote } from '../models/note.interface';
 import { startLoading, stopLoading } from './uiActions';
 import { RootState } from '../reducers';
 import { loadNotes } from '../helpers/loadNotes';
+
 export const addNewNote = (): NotesInterface => ({
   type: notesTypes.ADD_NOTE,
   payload: null
@@ -36,7 +37,18 @@ export const startNoteCreation = (note: INote) => async (dispatch: any, getState
     errorHandler(err);
   }
 };
-export const startUpdateCreation = (note: INote) => async (dispatch: any) => {};
+export const startUpdateCreation = (note: INote) => async (dispatch: any, getState: () => RootState) => {
+  try {
+    const { uid } = getState().auth;
+    dispatch(startLoading());
+    const noteToFirestore = { ...note };
+    delete noteToFirestore.id;
+    await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+    dispatch(stopLoading());
+  } catch (e) {
+    errorHandler(e);
+  }
+};
 
 export const setNotes = (notes: INote[]): NotesInterface => ({
   type: notesTypes.SET_NOTES,

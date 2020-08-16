@@ -22,10 +22,12 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ note }) => {
 
   return (
     <div className="journal--entry" onClick={setNote}>
-      <div
-        className="journal--entry-image"
-        style={{ backgroundImage: `url(${defaultImgUrl})`, backgroundSize: 'cover' }}></div>
-      <div className="journal--entry-body">
+      {imgUrl ? (
+        <div
+          className="journal--entry-image"
+          style={{ backgroundImage: `url(${defaultImgUrl})`, backgroundSize: 'cover' }}></div>
+      ) : null}
+      <div className={`journal--entry-body ${!imgUrl ? 'journal--entry--two' : ''} `}>
         <p className="journal-entry-title">{title}</p>
         <p className="journal-entry-content">{truncateText(text as string)}</p>
       </div>
