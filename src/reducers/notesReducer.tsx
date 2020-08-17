@@ -20,6 +20,11 @@ export default (state = initialState, { type, payload }: NotesInterface) => {
           ...payload
         }
       };
+    case notesTypes.UPDATE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map((note: INote) => (note.id === payload.id ? payload : note))
+      };
     case notesTypes.SET_NOTES:
       return {
         ...state,

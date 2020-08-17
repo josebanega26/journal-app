@@ -45,10 +45,16 @@ export const startUpdateCreation = (note: INote) => async (dispatch: any, getSta
     delete noteToFirestore.id;
     await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
     dispatch(stopLoading());
+    dispatch(updateLocalNote(note));
   } catch (e) {
     errorHandler(e);
   }
 };
+
+export const updateLocalNote = (note: INote) => ({
+  type: notesTypes.UPDATE_NOTE,
+  payload: note
+});
 
 export const setNotes = (notes: INote[]): NotesInterface => ({
   type: notesTypes.SET_NOTES,
