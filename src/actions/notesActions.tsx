@@ -5,6 +5,7 @@ import { INote } from '../models/note.interface';
 import { startLoading, stopLoading } from './uiActions';
 import { RootState } from '../reducers';
 import { loadNotes } from '../helpers/loadNotes';
+import { fileUpload } from '../helpers/fileUpload';
 
 export const addNewNote = (): NotesInterface => ({
   type: notesTypes.ADD_NOTE,
@@ -46,6 +47,16 @@ export const startUpdateCreation = (note: INote) => async (dispatch: any, getSta
     await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
     dispatch(stopLoading());
     dispatch(updateLocalNote(note));
+  } catch (e) {
+    errorHandler(e);
+  }
+};
+
+export const startUploadingFile = (file: File) => async (dispatch: any, getState: () => RootState) => {
+  try {
+    const { active: activedNote } = getState().notes;
+    const imgUrl = await fileUpload(file);
+    dispatch(startUpdateCreation({ ...activedNote, imgUrl }));
   } catch (e) {
     errorHandler(e);
   }

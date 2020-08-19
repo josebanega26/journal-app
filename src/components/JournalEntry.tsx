@@ -4,8 +4,6 @@ import { INote } from '../models/note.interface';
 import { useDispatch } from 'react-redux';
 import { selectNote } from '../actions/notesActions';
 import moment from 'moment';
-const defaultImgUrl = 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg';
-// TODO: set props as required
 interface JournalEntryProps {
   note: INote;
 }
@@ -25,7 +23,7 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ note }) => {
       {imgUrl ? (
         <div
           className="journal--entry-image"
-          style={{ backgroundImage: `url(${defaultImgUrl})`, backgroundSize: 'cover' }}></div>
+          style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover' }}></div>
       ) : null}
       <div className={`journal--entry-body ${!imgUrl ? 'journal--entry--two' : ''} `}>
         <p className="journal-entry-title">{title}</p>
