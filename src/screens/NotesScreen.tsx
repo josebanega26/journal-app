@@ -7,14 +7,14 @@ import { INote } from '../models/note.interface';
 import { RootState } from '../reducers/index';
 const NotesScreen = () => {
   const { active: note } = useSelector((state: RootState) => state.notes);
-
   const [noteForm, handlerForm, reset] = useForm(note);
   const { title, text, imgUrl } = noteForm;
-  const activeId = useRef(note.id);
+  const activeId = useRef(note.id || null);
+  console.log('activeId :>> ', activeId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (activeId.current !== note.id) {
+    if (activeId.current !== note.id && note.id) {
       reset(note);
       activeId.current = note.id;
     }
@@ -31,6 +31,7 @@ const NotesScreen = () => {
       title,
       imgUrl
     };
+    console.log('note.id :>> ', note.id);
     if (note.id) {
       dispatch(startUpdateCreation({ id: note.id, ...newNote }));
     } else {
@@ -55,6 +56,7 @@ const NotesScreen = () => {
         />
         <textarea name="text" id="notes--content" className="notes--content" value={text} onChange={handlerForm} />
         <div className="notes--image">{!!imgUrl && <img src={imgUrl} alt="sunset" />}</div>
+        <button className="mt-2 btn-danger"> Delete </button>
       </div>
     </div>
   );

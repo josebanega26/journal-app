@@ -6,6 +6,7 @@ import { startLoading, stopLoading } from './uiActions';
 import { RootState } from '../reducers';
 import { loadNotes } from '../helpers/loadNotes';
 import { fileUpload } from '../helpers/fileUpload';
+import Swal from 'sweetalert2';
 
 export const addNewNote = (): NotesInterface => ({
   type: notesTypes.ADD_NOTE,
@@ -31,8 +32,7 @@ export const startNoteCreation = (note: INote) => async (dispatch: any, getState
   try {
     const { uid } = getState().auth;
     dispatch(startLoading());
-    const docRef = await db.collection(`${uid}/journal/notes`).add(note);
-    console.log('docRef :>> ', docRef);
+    await db.collection(`${uid}/journal/notes`).add(note);
     dispatch(stopLoading());
   } catch (err) {
     errorHandler(err);
@@ -56,7 +56,16 @@ export const startUploadingFile = (file: File) => async (dispatch: any, getState
   try {
     const { active: activedNote } = getState().notes;
     const imgUrl = await fileUpload(file);
+    Swal.fire({
+      title: 'Uploadding...',
+      text: 'Wait on minute....',
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
     dispatch(startUpdateCreation({ ...activedNote, imgUrl }));
+    Swal.close();
   } catch (e) {
     errorHandler(e);
   }
