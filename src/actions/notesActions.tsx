@@ -92,3 +92,20 @@ export const getNotes = () => async (dispatch: any, getState: () => RootState) =
     errorHandler(err);
   }
 };
+
+export const deleteNote = (id: number): NotesInterface => ({
+  type: notesTypes.DELETE_NOTE,
+  payload: id
+});
+
+export const startDeleting = (id: number) => async (dispatch: any, getState: () => RootState) => {
+  try {
+    const { uid } = getState().auth;
+    dispatch(startLoading());
+    await db.doc(`${uid}/journal/notes/${id}`).delete();
+    dispatch(stopLoading());
+    dispatch(deleteNote(id));
+  } catch (e) {
+    errorHandler(e);
+  }
+};

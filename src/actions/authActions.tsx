@@ -2,6 +2,7 @@ import { AuthInterface, authTypes } from '../types/authTypes';
 import { googlgeAuthProvider, firebase } from '../firebase/firebase-config';
 import { startLoading, stopLoading } from './uiActions';
 import { errorHandler } from '../helpers/errorHandler';
+import { cleanLogoutNotes } from './notesActions';
 export const startLoginWithEmailPassword = (email: string, password: string) => {
   return async (dispatch: any) => {
     try {
@@ -55,6 +56,7 @@ export const startLogout = () => {
       await firebase.auth().signOut();
       dispatch(logout());
       dispatch(stopLoading());
+      dispatch(cleanLogoutNotes());
     } catch (err) {
       errorHandler(err);
     }

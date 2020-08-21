@@ -17,8 +17,8 @@ export type AddNote = {
 };
 
 export type DeleteNote = {
-  type: typeof notesTypes.ADD_NOTE;
-  payload: any;
+  type: typeof notesTypes.DELETE_NOTE;
+  payload: number;
 };
 
 export type CleanLogoutNotes = {
@@ -40,4 +40,5 @@ export type SetNotes = {
   type: typeof notesTypes.SET_NOTES;
   payload: INote[];
 };
-export type NotesInterface = AddNote | DeleteNote | CleanLogoutNotes | CreateNote | SelectNote | SetNotes;
+
+export type NotesInterface = AddNote | DeleteNote | CleanLogoutNotes | CreateNote | SelectNote | SetNotes | DeleteNote;

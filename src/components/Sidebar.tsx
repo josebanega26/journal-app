@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../actions/authActions';
 import { RootState } from '../reducers';
 import { useHistory } from 'react-router-dom';
-import { addNewNote, cleanLogoutNotes } from '../actions/notesActions';
+import { addNewNote } from '../actions/notesActions';
 
 const Sidebar = () => {
   const history = useHistory();
@@ -15,7 +15,6 @@ const Sidebar = () => {
 
   const handlerLogout = () => {
     dispatch(startLogout());
-    dispatch(cleanLogoutNotes());
     history.push('/auth/login');
   };
 

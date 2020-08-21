@@ -25,6 +25,12 @@ export default (state = initialState, { type, payload }: NotesInterface) => {
         ...state,
         notes: state.notes.map((note: INote) => (note.id === payload.id ? payload : note))
       };
+    case notesTypes.DELETE_NOTE:
+      console.log('payload :>> ', payload);
+      return {
+        ...state,
+        notes: state.notes.filter((note: INote) => note.id !== payload)
+      };
     case notesTypes.SET_NOTES:
       return {
         ...state,
